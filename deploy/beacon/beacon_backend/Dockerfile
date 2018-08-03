@@ -3,14 +3,7 @@ FROM debian:latest
 MAINTAINER Alfred Gil <alfred.gil@crg.eu>
 RUN apt-get clean -y; \
     apt-get update -y -qq; \
-    apt-get install -y --no-install-recommends -q wget netcat postgresql-client
-RUN mkdir /usr/java
-WORKDIR /usr/java
-RUN wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u102-b14/jdk-8u102-linux-x64.tar.gz &&\
-    tar -xzvf jdk-8u102-linux-x64.tar.gz &&\
-    rm jdk-8u102-linux-x64.tar.gz
-
-ENV PATH /usr/java/jdk1.8.0_102/bin:$PATH
+    apt-get install -y --no-install-recommends -q wget netcat postgresql-client default-jre-headless default-jdk-headless
 
 RUN apt-get -y install maven git  || \
     apt-get -y update && apt-get -y install maven git
