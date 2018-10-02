@@ -246,15 +246,18 @@ angular.module(appName)
 
                     var searchParams = angular.copy($scope.searchForm);
                     $log.debug("Form arguments", searchParams);
-                    searchParams.assemblyId = angular.copy($scope.datasets[searchParams.datasetIds].referenceGenome);
+                    searchParams.assemblyId = angular.copy($scope.datasets[searchParams.datasetids].assemblyId);
 
 
                     // searchParams.chromosome = $scope.chromosomes[$scope.searchForm.chromosome];
                     delete searchParams.referenceGenome;
 
-                    if (searchParams.datasetIds.toLowerCase().indexOf('all') === 0 || searchParams.datasetIds === '') {
-                        delete searchParams.datasetIds;
+                    if (searchParams.datasetids.toLowerCase().indexOf('all') === 0 || searchParams.datasetids === '') {
+                    } else {
+			searchParams.datasetIds = searchParams.datasetids;
                     }
+		    delete searchParams.datasetids;
+
 
                     $log.debug("Sending arguments", searchParams);
 
